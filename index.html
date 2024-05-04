@@ -1,48 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Phone Tilt Experiment</title>
-    <style>
-        canvas {
-            background-color: orange;
-            top: 50%;
-            left: 50%;
-            position: absolute;
-            transform: translate(-50%, -50%);
-        }
-    </style>
-</head>
-<body>
-    <canvas id="myCanvas" width="700" height="500"></canvas>
-    <script>
-        const ctx = myCanvas.getContext("2d");
-        let alpha = 0;
-        let beta = 0;
-        let gamma = 0;
-
-        window.addEventListener("deviceorientation", (event) => {
-            alpha = event.alpha;
-            beta = event.beta;
-            gamma = event.gamma;
-        });
-
-        animate();
-
-        function animate() {
-            ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
-            ctx.beginPath();
-            ctx.ellipse(
-                myCanvas.width / 2,
-                myCanvas.height / 2,
-                100,
-                50,
-                (gamma * Math.PI) / 180,
-                0,
-                Math.PI * 2
-            );
-            ctx.stroke();
-            requestAnimationFrame(animate);
-        }
-    </script>
-</body>
+    <head>
+        <title> Phone Tilt Experiment</title>
+        <style>
+      canvas {
+           background-color: orange;
+           top:50%;
+           left: 50%;
+           position: absolute;
+           transform: translate(-50%, -50%);
+           /* width: 700px;
+           height: 500px; */
+      }
+        </style>
+    </head>
+    <body>
+        <canvas id="myCanvas" width ="700" height = "500" ></canvas >
+            <script src="phoneControls.js"></script>
+<script>
+    const ctx = myCanvas.getContext("2d");
+   let rotation = Math.PI /4;
+//    const controls = new PhoneControls();
+    animate();
+    function animate(){   
+        rotation++;
+        ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+         ctx.beginPath();
+         ctx.ellipse(
+        myCanvas.width / 2,
+        myCanvas.height / 2,
+        100,
+        50,
+        rotation,
+        0,
+        Math.PI * 2
+        // or 360
+    );
+    ctx.stroke();
+    requestAnimationFrame(animate)
+    }
+</script>
+        
+    </body>
 </html>
