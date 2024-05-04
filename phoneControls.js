@@ -3,10 +3,10 @@ class PhoneControls{
     constructor(canvas) {
         this.canvas = canvas;
         this.tilt = 0;
-        this.#addListeners();
+        this.addListeners();
 
     }
-    #addListeners(){
+       addListeners(){
         window.addEventListener("deviceorientation", (e) =>  {
             // console.log(e);
             this.tilt = e.beta * Math.PI /180 ;
